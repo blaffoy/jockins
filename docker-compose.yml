@@ -1,0 +1,16 @@
+version: "2"
+services:
+    jenkins-master:
+        container_name: fewt_jenkins_master
+        build:
+            context: .
+            args:
+                uid: ${UID}
+                gid: ${GID}
+        ports:
+            - "8081:8080"
+        volumes:
+            - "/c/Users/Barry/repos/jockins/secrets:/secrets:ro"
+            - "${SSH_AUTH_SOCK}:/tmp/ssh-agent"
+        environment:
+            SSH_AUTH_SOCK: /tmp/ssh-agent
